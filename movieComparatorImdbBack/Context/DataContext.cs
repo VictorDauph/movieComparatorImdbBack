@@ -1,13 +1,12 @@
 ﻿global using Microsoft.EntityFrameworkCore;
-using minimalWebApiDotNet.config;
-using minimalWebApiDotNet.models;
+using movieComparatorImdbBack.config;
+using movieComparatorImdbBack.models;
 
 namespace minimalWebApiDotNet.Context
 {
     public class DataContext:DbContext
     {
-
-        public DbSet<Product> Products { get; set; } = null!;
+        public DbSet<WordClass> Words{ get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

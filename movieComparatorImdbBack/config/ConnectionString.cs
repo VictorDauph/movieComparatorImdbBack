@@ -1,4 +1,4 @@
-﻿namespace minimalWebApiDotNet.config
+﻿namespace movieComparatorImdbBack.config
 {
     public static class ConnectionString
     {

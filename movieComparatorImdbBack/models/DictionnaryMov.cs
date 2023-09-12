@@ -2,6 +2,6 @@
 {
     public class DictionnaryMov
     {
-        public ICollection<string> Words { get; set; }= Array.Empty<string>();
+        public ICollection<WordClass> Words { get; set; }= new HashSet<WordClass>();
     }
 }

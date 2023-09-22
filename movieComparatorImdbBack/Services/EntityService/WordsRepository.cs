@@ -1,4 +1,5 @@
-﻿using minimalWebApiDotNet.Context;
+﻿using Microsoft.Identity.Client;
+using minimalWebApiDotNet.Context;
 using movieComparatorImdbBack.models;
 
 namespace movieComparatorImdbBack.Services.EntityService
@@ -33,8 +34,15 @@ namespace movieComparatorImdbBack.Services.EntityService
                 _dataContext.SaveChanges();
             }
 
-           
-           
+        }
+        public WordClass getRandomWord()
+        {
+            WordClass wordRand = _dataContext.Words
+                                .FromSql(
+                                        $"SELECT TOP 1 * FROM dbo.Words ORDER BY RAND()")
+                                .First();
+            
+            return wordRand;
         }
     }
 }

@@ -26,11 +26,13 @@ namespace movieComparatorImdbBack.Controllers
         }
 
         [HttpGet("/randomMovies")]
-        public MovieImdbDto getRandomMovies(string word)
+        public ICollection<MovieImdbDto>? getRandomMovies()
         {
-            MovieImdbDto movie1 = _movieService.movieFromRandomWord(word);
+  
 
-            return movie1;
+            ICollection<MovieImdbDto>? movieDuo = _movieService.BuildMovieDuo();
+
+            return movieDuo;
 
         }
 

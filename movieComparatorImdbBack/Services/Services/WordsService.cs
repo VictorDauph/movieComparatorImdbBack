@@ -14,5 +14,11 @@ namespace movieComparatorImdbBack.Services.Services
         {   
             _wordsRepository.AddWords(words);
         }
+
+        public WordClass getRandomWord()
+        {
+            WordClass word = _wordsRepository.getRandomWord();
+            return word;
+        }
     }
 }

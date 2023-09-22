@@ -14,28 +14,23 @@ namespace movieComparatorImdbBack.Controllers
     [Route("[controller]")]
     public class MovieController : Controller
     {
-
-
         private readonly ILogger<MovieController> _logger;
 
-        private readonly ImdbConnectorService _imdbConnectorService;
+        private readonly MovieService _movieService= new MovieService() ;
 
         public MovieController(
             ILogger<MovieController> logger
             )
         {
             _logger = logger;
-            _imdbConnectorService = new ImdbConnectorService();
         }
 
         [HttpGet("/randomMovies")]
-        public string getRandomMovies()
+        public MovieImdbDto getRandomMovies(string word)
         {
-            Task<string> response= _imdbConnectorService.movieFromRandomWord("the");
+            MovieImdbDto movie1 = _movieService.movieFromRandomWord(word);
 
-            TmdbSearchResultDto tmdbSearchResultDto= JsonConvert.DeserializeObject<TmdbSearchResultDto>(response.Result);
-
-            return response.Result ;
+            return movie1;
 
         }
 

@@ -4,7 +4,7 @@
     {
         public int page { get; set; }
 
-        public ICollection<MovieImdbDto> results { get; set; } = null!;
+        public IList<MovieImdbDto> results { get; set; } = null!;
 
         public int total_pages { get; set; }
 

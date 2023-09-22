@@ -39,7 +39,7 @@ namespace movieComparatorImdbBack.Services.EntityService
         {
             WordClass wordRand = _dataContext.Words
                                 .FromSql(
-                                        $"SELECT TOP 1 * FROM dbo.Words ORDER BY RAND()")
+                                        $"SELECT TOP 1 * FROM dbo.Words ORDER BY NEWID()  ")
                                 .First();
             
             return wordRand;

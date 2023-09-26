@@ -44,5 +44,11 @@ namespace movieComparatorImdbBack.Services.EntityService
             
             return wordRand;
         }
+
+        public void deleteWord(WordClass word )
+        {
+            _dataContext.Remove(word);
+            _dataContext.SaveChanges() ;
+        }
     }
 }

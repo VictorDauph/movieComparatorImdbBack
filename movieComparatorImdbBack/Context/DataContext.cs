@@ -8,6 +8,8 @@ namespace minimalWebApiDotNet.Context
     {
         public DbSet<WordClass> Words{ get; set; } = null!;
 
+        public DbSet<Movie> Movies { get; set; } = null!;
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);

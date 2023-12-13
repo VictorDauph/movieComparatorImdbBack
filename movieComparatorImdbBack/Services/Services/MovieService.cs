@@ -6,23 +6,36 @@ namespace movieComparatorImdbBack.Services.Services
 {
     public class MovieService
     {
+        private readonly IWebHostEnvironment _webHost;
         ImdbConnectorService _connectorService = new ImdbConnectorService();
-        private readonly WordsService _wordsService = new WordsService();
+        private readonly WordsService _wordsService;
         private readonly WordsRepository _wordsRepository = new WordsRepository();
-        public MovieService() { }
+        private readonly MovieRepository _movieRepository = new MovieRepository();
+
+        public MovieService(IWebHostEnvironment webHost)
+        {
+            _webHost = webHost;
+            _wordsService = new WordsService(_webHost);
+        }
+
+
+
+
 
         public IList<MovieImdbDto>? BuildMovieDuo()
         {
 
-            MovieImdbDto? movie1 = this.movieFromRandomWord();
-            MovieImdbDto? movie2 = this.movieFromRandomWord();
+            MovieImdbDto? movieDto1 = this.movieFromRandomWord();
+            MovieImdbDto? movieDto2 = this.movieFromRandomWord();
 
-            if(movie1 == null || movie2 == null) return null;
+            if(movieDto1 == null || movieDto2 == null) return null;
             else
             {
+                copyMovieData(movieDto1);
+                copyMovieData(movieDto2);
                 IList<MovieImdbDto> movieDuo = new List<MovieImdbDto>();
-                movieDuo.Add(movie1);
-                movieDuo.Add(movie2);
+                movieDuo.Add(movieDto1);
+                movieDuo.Add(movieDto2);
                 return movieDuo;
             }
 
@@ -56,6 +69,16 @@ namespace movieComparatorImdbBack.Services.Services
             }
             return null;
 
+        }
+
+        public void copyMovieData(MovieImdbDto dto)
+        {
+            Movie? movie = _movieRepository.getMovieById(dto.Id);
+
+            if(movie == null) {
+                movie = new Movie(dto);
+                _movieRepository.addMovie(movie);
+            }
         }
     }
 }

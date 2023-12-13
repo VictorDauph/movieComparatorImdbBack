@@ -10,7 +10,7 @@ namespace movieComparatorImdbBack.Controllers
 {
 
     [ApiController]
-    [Route("[controller]")]
+    [Route("/Words")]
     public class WordsController : Controller
     {
 
@@ -28,10 +28,10 @@ namespace movieComparatorImdbBack.Controllers
         {
             _logger = logger;
             _webHost = webHost;
-            _wordsService = new WordsService();
+            _wordsService = new WordsService(webHost);
         }
 
-
+        /*
         [HttpGet("/StaticDictionnary")]
         public DictionnaryMov GetStaticDictionnary()
         {
@@ -56,30 +56,7 @@ namespace movieComparatorImdbBack.Controllers
             }
             return dico;
         }
-
-        [HttpGet("/InitDynamicDictionnary")]
-        public void initWordsTable()
-        {
-            string contentRootPath = _webHost.ContentRootPath;
-
-            DictionnaryMov dico = new DictionnaryMov();
-            string path = contentRootPath + "/ressources/wordlist.json";
-            using (StreamReader r = new StreamReader(path))
-            {
-                string json = r.ReadToEnd();
-                if (json != null)
-                {
-                    ICollection<string> words = JsonConvert.DeserializeObject<ICollection<string>>(json);
-                    foreach (string newWord in words)
-                    {
-                        WordClass wordClass = new WordClass(newWord);
-                        dico.Words.Add(wordClass);
-                    }
-                    _wordsService.AddWords(dico.Words);
-                }
-
-            }
-        }
+        */
 
     }
 }

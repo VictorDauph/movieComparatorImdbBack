@@ -35,12 +35,19 @@ namespace movieComparatorImdbBack.Services.EntityService
             }
 
         }
-        public WordClass getRandomWord()
+        public WordClass? getRandomWord()
         {
-            WordClass wordRand = _dataContext.Words
-                                .FromSql(
-                                        $"SELECT TOP 1 * FROM dbo.Words ORDER BY NEWID()  ")
-                                .First();
+            WordClass? wordRand;
+            try
+            {
+                wordRand = _dataContext.Words
+                                    .FromSql(
+                                            $"SELECT TOP 1 * FROM dbo.Words ORDER BY NEWID()  ")
+                                    .First();
+            }catch(Exception ex)
+            {
+                wordRand = null;
+            }
             
             return wordRand;
         }

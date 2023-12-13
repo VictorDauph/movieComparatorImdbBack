@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using minimalWebApiDotNet.Context;
@@ -11,18 +12,23 @@ namespace movieComparatorImdbBack.Controllers
 {
 
     [ApiController]
-    [Route("[controller]")]
+    [Route("/Movie")]
     public class MovieController : Controller
     {
         private readonly ILogger<MovieController> _logger;
 
-        private readonly MovieService _movieService= new MovieService() ;
+        private readonly IWebHostEnvironment _webHost;
+
+        private readonly MovieService _movieService;
 
         public MovieController(
-            ILogger<MovieController> logger
+            ILogger<MovieController> logger,
+            IWebHostEnvironment webHost
             )
         {
+            _webHost = webHost;
             _logger = logger;
+            _movieService = new MovieService(_webHost);
         }
 
         [HttpGet("/randomMovies")]

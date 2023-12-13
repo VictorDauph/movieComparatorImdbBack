@@ -10,6 +10,10 @@ namespace minimalWebApiDotNet.Context
 
         public DbSet<Movie> Movies { get; set; } = null!;
 
+        public DbSet<User> Users { get; set; } = null!;
+
+        public DbSet<Vote> Votes { get; set; } = null!;
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);

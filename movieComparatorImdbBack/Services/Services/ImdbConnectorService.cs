@@ -12,7 +12,7 @@ namespace movieComparatorImdbBack.Services.Services
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri("https://api.themoviedb.org/3/search/keyword?query=" + word + "&page="+page+"&api_key=e3ddd4b9392b10229880876e06626f24")
+                RequestUri = new Uri("https://api.themoviedb.org/3/search/movie?query=" + word + "&page="+page+"&api_key=e3ddd4b9392b10229880876e06626f24")
             };
 
             var response = await httpClient.SendAsync(request).ConfigureAwait(false);

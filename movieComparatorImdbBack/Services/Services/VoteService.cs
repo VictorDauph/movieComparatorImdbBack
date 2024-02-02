@@ -20,9 +20,6 @@ namespace movieComparatorImdbBack.Services.Services
             {
                 Vote vote = new Vote(user, moviePos.Id, movieNeg.Id);
                 _voteRepository.addVote(vote);
-                _movieRepository.voteForMovie(moviePos,vote, true);
-                _movieRepository.voteForMovie(movieNeg,vote, false);
-
             }
         }
 

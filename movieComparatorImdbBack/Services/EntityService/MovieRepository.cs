@@ -51,21 +51,5 @@ namespace movieComparatorImdbBack.Services.EntityService
             _dataContext.SaveChanges();
         }
 
-        //bool vote is true for positive vote and false for negative vote
-        public void voteForMovie( Movie movie,Vote vote, bool votePos ) {
-
-            /*
-            if( votePos == true ) {
-                movie.votePosId.Add(vote.Id);
-            }
-            if(votePos == false)
-            {
-                movie.voteNegId.Add(vote.Id); ;
-            }
-
-            _dataContext.SaveChanges();
-            */
-            
-        }
     }
 }
